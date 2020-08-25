@@ -1,0 +1,10 @@
+.bloop/
+.DS_Store
+.envrc
+.idea/
+.metals/
+.vscode/
+out/
+project/metals.sbt
+project/project/metals.sbt
+target/
