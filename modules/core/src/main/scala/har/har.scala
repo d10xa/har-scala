@@ -33,8 +33,8 @@ final case class Page(
   comment: Option[String])
 
 final case class PageTimings(
-  onContentLoad: Option[Int],
-  onLoad: Option[Int],
+  onContentLoad: Option[Double],
+  onLoad: Option[Double],
   comment: Option[String]
 )
 
