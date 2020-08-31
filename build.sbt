@@ -1,6 +1,6 @@
-ThisBuild / scalaVersion     := "2.13.3"
-ThisBuild / version          := "0.1.1"
-ThisBuild / organization     := "ru.d10xa"
+ThisBuild / scalaVersion := "2.13.3"
+ThisBuild / version := "0.1.2"
+ThisBuild / organization := "ru.d10xa"
 
 lazy val har = project
   .in(file("."))
