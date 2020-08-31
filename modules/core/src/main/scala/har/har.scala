@@ -28,9 +28,10 @@ final case class Browser(
 final case class Page(
   startedDateTime: String,
   id: String,
-  title: String,
+  title: Option[String],
   pageTimings: PageTimings,
-  comment: Option[String])
+  comment: Option[String]
+)
 
 final case class PageTimings(
   onContentLoad: Option[Double],
@@ -151,8 +152,8 @@ final case class Timings(
 )
 
 /**
- * @param stack is None for type parser
- */
+  * @param stack is None for type parser
+  */
 final case class ChromeInitiator(
   `type`: String,
   stack: Option[ChromeInitiatorStack],
