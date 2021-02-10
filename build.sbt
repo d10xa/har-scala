@@ -9,7 +9,13 @@ lazy val har = project
   )
   .aggregate(
     `har-core`,
-    `har-circe`
+    `har-circe`,
+    `har-html`
+  )
+  .dependsOn(
+    `har-core`,
+    `har-circe`,
+    `har-html`
   )
 
 lazy val `har-core` = (project in file("modules/core"))
@@ -26,6 +32,16 @@ lazy val `har-circe` = (project in file("modules/circe"))
     libraryDependencies ++= Seq(
       "io.circe" %% "circe-parser" % "0.13.0",
       "io.circe" %% "circe-generic" % "0.13.0"
+    )
+  )
+
+lazy val `har-html` = (project in file("modules/html"))
+  .dependsOn(`har-core`)
+  .settings(commonSettings: _*)
+  .settings(
+    name := "har-html",
+    libraryDependencies ++= Seq(
+      "com.lihaoyi" %% "scalatags" % "0.9.3"
     )
   )
 
