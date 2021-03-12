@@ -1,7 +1,6 @@
 package har.codegen.http4s
 
 import har._
-import org.http4s.util.CaseInsensitiveString
 
 import scala.meta._
 
@@ -16,7 +15,6 @@ object Codegen {
 
   private lazy val ignoreHeaders =
     Set(":method", ":authority", ":scheme", ":path")
-      .map(CaseInsensitiveString.apply)
 
   def addEntity(t: Term.Apply, r: Request): Term.Apply =
     r.postData match {
@@ -68,7 +66,7 @@ object Codegen {
 
   def extractHeadersTuples(request: Request): List[(String, String)] =
     request.headers
-      .filterNot(h => ignoreHeaders.contains(CaseInsensitiveString(h.name)))
+      .filterNot(h => ignoreHeaders.contains(h.name.toLowerCase))
       .map(headerToTuple)
       .toList
 
