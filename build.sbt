@@ -1,5 +1,5 @@
 ThisBuild / scalaVersion := "2.13.3"
-ThisBuild / version := "0.1.2"
+ThisBuild / version := "0.1.4-SNAPSHOT"
 ThisBuild / organization := "ru.d10xa"
 
 lazy val har = project
@@ -10,7 +10,8 @@ lazy val har = project
   .aggregate(
     `har-core`,
     `har-circe`,
-    `har-html`
+    `har-html`,
+    `har-codegen-http4s`
   )
   .dependsOn(
     `har-core`,
@@ -42,6 +43,17 @@ lazy val `har-html` = (project in file("modules/html"))
     name := "har-html",
     libraryDependencies ++= Seq(
       "com.lihaoyi" %% "scalatags" % "0.9.3"
+    )
+  )
+
+lazy val `har-codegen-http4s` = (project in file("modules/har-codegen-http4s"))
+  .dependsOn(`har-core`)
+  .settings(commonSettings: _*)
+  .settings(
+    name := "har-codegen-http4s",
+    libraryDependencies ++= Seq(
+      "org.scalameta" %% "scalameta" % "4.4.10",
+      "org.scalameta" %% "scalafmt-core" % "2.7.5"
     )
   )
 
