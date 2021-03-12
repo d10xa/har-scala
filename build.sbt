@@ -1,6 +1,7 @@
 ThisBuild / scalaVersion := "2.13.3"
-ThisBuild / version := "0.1.4-SNAPSHOT"
 ThisBuild / organization := "ru.d10xa"
+
+enablePlugins(GitVersioning)
 
 lazy val har = project
   .in(file("."))
