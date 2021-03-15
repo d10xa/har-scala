@@ -17,7 +17,8 @@ lazy val har = project
   .dependsOn(
     `har-core`,
     `har-circe`,
-    `har-html`
+    `har-html`,
+    `har-codegen-http4s`
   )
 
 lazy val `har-core` = (project in file("modules/core"))
@@ -33,7 +34,8 @@ lazy val `har-circe` = (project in file("modules/circe"))
     name := "har-circe",
     libraryDependencies ++= Seq(
       "io.circe" %% "circe-parser" % "0.13.0",
-      "io.circe" %% "circe-generic" % "0.13.0"
+      "io.circe" %% "circe-generic" % "0.13.0",
+      "org.scalatest" %% "scalatest" % "3.2.5" % Test
     )
   )
 

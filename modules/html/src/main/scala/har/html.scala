@@ -6,15 +6,14 @@ object html extends HtmlEntry
 trait HtmlEntry {
 
   def makeDetails(
-      name: String,
-      pairs: List[(String, Modifier)],
-      open: Boolean = false
+    name: String,
+    pairs: List[(String, Modifier)],
+    open: Boolean = false
   ): Modifier = {
     val details = tag("details")
     val summary = tag("summary")
-    val modifiers = pairs.flatMap {
-      case (k, v) =>
-        Vector(div(dt(style := "float: left; clear: left", s"$k: "), dd(v)))
+    val modifiers = pairs.flatMap { case (k, v) =>
+      Vector(div(dt(style := "float: left; clear: left", s"$k: "), dd(v)))
     }
     details(
       if (open) attr("open").empty else attr("open") := "false",
@@ -55,7 +54,10 @@ trait HtmlEntry {
             "Query String Parameters",
             request.queryString.map(q => q.name -> span(q.value)).toList
           ),
-          makeDetails("Response", List("Body" -> span(response.content.text)))
+          makeDetails(
+            "Response",
+            List("Body" -> span(response.content.flatMap(_.text)))
+          )
         )
       )
       .toString

@@ -45,8 +45,8 @@ final case class Entry(
   time: Double,
   request: Request,
   response: Response,
-  cache: Cache,
-  timings: Timings,
+  cache: Option[Cache],
+  timings: Option[Timings],
   serverIPAddress: Option[String],
   connection: Option[String],
   comment: Option[String],
@@ -67,15 +67,15 @@ final case class Request(
 )
 
 final case class Response(
-  status: Int,
-  statusText: String,
-  httpVersion: String,
+  status: Option[Int],
+  statusText: Option[String],
+  httpVersion: Option[String],
   cookies: Vector[Cookie],
   headers: Vector[Header],
-  content: Content,
-  redirectURL: String,
+  content: Option[Content],
+  redirectURL: Option[String],
   headersSize: Option[Int],
-  bodySize: Int,
+  bodySize: Option[Int],
   comment: Option[String]
 )
 
@@ -118,9 +118,9 @@ final case class Param(
 )
 
 final case class Content(
-  size: Int,
+  size: Option[Int],
   compression: Option[Int],
-  mimeType: String,
+  mimeType: Option[String],
   text: Option[String],
   encoding: Option[String],
   comment: Option[String]
@@ -134,9 +134,9 @@ final case class Cache(
 
 final case class BeforeAfterRequest(
   expires: Option[String],
-  lastAccess: String,
-  eTag: String,
-  hitCount: Int,
+  lastAccess: Option[String],
+  eTag: Option[String],
+  hitCount: Option[Int],
   comment: Option[String]
 )
 
@@ -151,8 +151,7 @@ final case class Timings(
   comment: Option[String]
 )
 
-/**
-  * @param stack is None for type parser
+/** @param stack is None for type parser
   */
 final case class ChromeInitiator(
   `type`: String,
