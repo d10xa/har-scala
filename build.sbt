@@ -61,6 +61,5 @@ lazy val `har-codegen-http4s` = (project in file("modules/har-codegen-http4s"))
   )
 
 lazy val commonSettings = Seq(
-  bintrayVcsUrl := Some("https://github.com/d10xa/har-scala.git"),
   licenses += ("MIT", url("http://opensource.org/licenses/MIT"))
 )
